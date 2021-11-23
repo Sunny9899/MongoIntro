@@ -1,0 +1,60 @@
+use assignment
+db.users.insert({first_name:"Suryansh"})
+show collections
+show dbs
+
+//1CREATE:
+
+db.users.insert({id:1,first_name:"Ferdinanda",last_name:"Merit",email:"fmerit0@walmart.com",gender:"Agender",ip_address:"92.229.70.232",age:23})
+
+db.users.insert({id:2,first_name:"Grannie",last_name:"Collie",email:"gcollie1@shop-pro.jp",gender:"Polygender",ip_address:"96.51.113.209",age:40})
+
+db.users.insertMany([{id:3,first_name:"Dirk",last_name:"Sherreard",email:"dsherreard2@yahoo.com",gender:"Genderfluid",ip_address:"88.117.185.185",age:63},
+{id:4,first_name:"Misty",last_name:"Cawood",email:"mcawood3@microsoft.com",gender:"Female",ip_address:"17.46.228.20",age:35},
+{id:5,first_name:"Caroline",last_name:"Kenwell",email:"ckenwell4@mail.ru",gender:"Polygender",ip_address:"183.145.143.1",age:82},
+{id:6,first_name:"Ruthanne",last_name:"Dengate",email:"rdengate5@economist.com",gender:"Male",ip_address:"124.243.19.180",age:14},
+{id:7,first_name:"Emmalynne",last_name:"Skipsea",email:"eskipsea6@ehow.com",gender:"Female",ip_address:"201.13.25.36",age:98},
+{id:8,first_name:"Kary",last_name:"Flude",email:"kflude7@xing.com",gender:"Male",ip_address:"73.112.56.110",age:49},
+{id:9,first_name:"Dom",last_name:"Rhucroft",email:"drhucroft8@sfgate.com",gender:"Polygender",ip_address:"223.100.173.70",age:9},
+{id:10,first_name:"Doralynn",last_name:"Misselbrook",email:"dmisselbrook9@pen.io",gender:"Female",ip_address:"78.230.104.72",age:76}]) 
+
+
+
+//2READ.
+db.users.find().pretty()
+
+db.users.find({gender:"Female"}).pretty()
+
+     //pretty wont work in findOne.
+db.users.findOne({"_id" : ObjectId("619d06b752b50a4a5d6c5b37")})
+
+db.users.findOne({gender:"Female"})
+
+
+
+//3UPDATE.
+//update contains two objects within, first one is to find the object to be updated and second one carries the updated values for the object found.
+//update Many has same syntax as update, but it can be used to alter a common value among data object in whole database.
+//$set is used to alter a specific key value and not the whole data object. 
+
+ db.users.update({"_id" : ObjectId("619d06b752b50a4a5d6c5b37")},{id:10,first_name:"Sunny",last_name:"Pajiala"})
+
+ db.users.updateMany({gender :"Male"},{$set:{gender:"NewMale"}})
+
+
+
+//4DELETE.
+//deleteOne if given parameter apart from id, will delete the first item it finds in database with respect to the parameter provided to it.
+//deleteMany deletes all data in database with respect to the parameter provided(irrespective  of Id as it is unique)
+
+db.users.remove({"_id" : ObjectId("619d06b752b50a4a5d6c5b36")})
+
+db.users.deleteOne({gender:"Female"})
+
+db.users.deleteMany({gender:"NewMale"})
+
+
+
+
+//5 DATABASE DELETE
+db.dropDatabase()
